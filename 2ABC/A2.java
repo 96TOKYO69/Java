@@ -1,5 +1,7 @@
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
+
 /**
  * Задача A2: Упорядочить и вывести числа в порядке возрастания (убывания) значений их длины.
  * Разработчик: Бабалаев
@@ -21,29 +23,11 @@ public class A2 {
         }
 
         // Сортировка по возрастанию длины чисел
-        for (int i = 0; i < numbers.length - 1; i++) {
-            for (int j = i + 1; j < numbers.length; j++) {
-                if (numbers[i].length() > numbers[j].length()) {
-                    String temp = numbers[i];
-                    numbers[i] = numbers[j];
-                    numbers[j] = temp;
-                }
-            }
-        }
-
+        Arrays.sort(numbers, Comparator.comparingInt(String::length));
         System.out.println("Числа, отсортированные по возрастанию длины: " + Arrays.toString(numbers));
 
         // Сортировка по убыванию длины чисел
-        for (int i = 0; i < numbers.length - 1; i++) {
-            for (int j = i + 1; j < numbers.length; j++) {
-                if (numbers[i].length() < numbers[j].length()) {
-                    String temp = numbers[i];
-                    numbers[i] = numbers[j];
-                    numbers[j] = temp;
-                }
-            }
-        }
-
+        Arrays.sort(numbers, Comparator.comparingInt(String::length).reversed());
         System.out.println("Числа, отсортированные по убыванию длины: " + Arrays.toString(numbers));
     }
 }
