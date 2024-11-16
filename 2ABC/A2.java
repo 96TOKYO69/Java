@@ -26,8 +26,14 @@ public class A2 {
         Arrays.sort(numbers, Comparator.comparingInt(String::length));
         System.out.println("Числа, отсортированные по возрастанию длины: " + Arrays.toString(numbers));
 
-        // Сортировка по убыванию длины чисел
-        Arrays.sort(numbers, Comparator.comparingInt(String::length).reversed());
-        System.out.println("Числа, отсортированные по убыванию длины: " + Arrays.toString(numbers));
+
+        System.out.println("Числа, отсортированные по убыванию длины: " + Arrays.toString(reverseArray(numbers)));
+    }
+    private static String[] reverseArray(String[] array) {
+        String[] reversed = new String[array.length];
+        for (int i = 0; i < array.length; i++) {
+            reversed[i] = array[array.length - 1 - i];
+        }
+        return reversed;
     }
 }
