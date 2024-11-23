@@ -1,0 +1,4 @@
+Bohemian Rhapsody, Queen, 5.55, Rock
+Thriller, Michael Jackson, 5.57, Pop
+Take Five, Dave Brubeck, 5.24, Jazz
+Stairway to Heaven, Led Zeppelin, 8.02, Rock
