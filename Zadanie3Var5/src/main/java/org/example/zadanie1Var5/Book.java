@@ -22,10 +22,6 @@ public class Book {
         this.bindingType = bindingType;
     }
 
-    public Book(int id, String title, String author) {
-        this(id, title, author, "Unknown", 2000, 100, 10.0, "Softcover");
-    }
-
     // Методы доступа (getters и setters)
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
