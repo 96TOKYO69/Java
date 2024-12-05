@@ -1,4 +1,0 @@
-12345abc6789
-no digits here
-abc12345678xyz
-one 123456789012123
