@@ -18,7 +18,6 @@ class StudentProcessorTest {
 
     @BeforeEach
     void setUp() throws IOException {
-
         tempFile = Files.createTempFile("studentstest", ".txt");
         try (BufferedWriter writer = Files.newBufferedWriter(tempFile)) {
             writer.write("Ivanov, 8.0");
@@ -36,7 +35,7 @@ class StudentProcessorTest {
     }
 
     @Test
-    void processStudents_ShouldAddUppercaseNames_WhenScoreAboveSeven() throws IOException {
+    void processStudents_ShouldModifyNames_WhenScoreAboveSeven() throws IOException {
 
         processor.processStudents(tempFile.toString());
 
@@ -49,13 +48,11 @@ class StudentProcessorTest {
         }
 
         String expectedContent = """
-                Ivanov, 8.0
+                IVANOV, 8.0
                 Petrov, 6.5
-                Sidorov, 7.5
-                IVANOV
-                SIDOROV
+                SIDOROV, 7.5
                 """;
-
+        
         assertEquals(
                 expectedContent.trim().replace("\n", System.lineSeparator()),
                 resultContent.toString().trim().replace("\r\n", System.lineSeparator())
