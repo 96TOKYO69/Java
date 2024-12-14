@@ -13,13 +13,11 @@ public class StudentProcessor {
             throw new IOException("Файл не найден: " + filePath);
         }
 
-        File tempFile = new File(filePath + ".tmp");
-
-        try (RandomAccessFile inputRaf = new RandomAccessFile(inputFile, "r");
-             RandomAccessFile outputRaf = new RandomAccessFile(tempFile, "rw")) {
-
+        try (RandomAccessFile raf = new RandomAccessFile(inputFile, "rw")) {
             String line;
-            while ((line = inputRaf.readLine()) != null) {
+            long filePointer;
+            
+            while ((filePointer = raf.getFilePointer()) < raf.length() && (line = raf.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length == 2) {
                     String lastName = parts[0].trim();
@@ -28,17 +26,12 @@ public class StudentProcessor {
                     if (averageScore > 7.0) {
                         lastName = lastName.toUpperCase();
                     }
-
-                    outputRaf.writeBytes(lastName + "," + averageScore + System.lineSeparator());
+                    
+                    raf.seek(filePointer);
+                    
+                    raf.writeBytes(lastName + "," + parts[1] + System.lineSeparator());
                 }
             }
-        }
-
-        if (!inputFile.delete()) {
-            throw new IOException("Не удалось удалить исходный файл");
-        }
-        if (!tempFile.renameTo(inputFile)) {
-            throw new IOException("Не удалось переименовать временный файл");
         }
     }
 }
